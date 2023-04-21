@@ -40,11 +40,13 @@ To set up and use the GAS-Dynamic-Data-Visualizer, follow these steps:
 function doGet() { ... }
 function getChartData() { ... }
 ```
-3. `index.html`: The HTML file that creates and displays the interactive charts using Google Charts.
+2. `index.html`: The HTML file that creates and displays the interactive charts using Google Charts.
 ```html
 <!DOCTYPE html>
 <html> ... </html>
 ```
+
+3. `sample.xlsx`: The excel file containing sample data. 
 
 ## Setup Instructions
 
