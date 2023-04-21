@@ -26,12 +26,6 @@ To set up and use the GAS-Dynamic-Data-Visualizer, follow these steps:
 ## Files
 
 1. `Code.gs`: The main Google Apps Script file that fetches data from the Google Sheet and returns it to the web app.
-
-```javascript
-function doGet() { ... }
-function getChartData() { ... }
-javascript```
-
 2. `index.html`: The HTML file that creates and displays the interactive charts using Google Charts.
 
 ## Setup Instructions
