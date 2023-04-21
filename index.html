@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {packages: ['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        google.script.run.withSuccessHandler(function(response) {
+          var jsonData = response;
+          var data = new google.visualization.arrayToDataTable(jsonData.chartData);
+
+          var options = {
+            title: 'Temperature',
+            curveType: 'function',
+            legend: { position: 'bottom' },
+            pointSize: 4,
+          };
+
+          var chart = new google.visualization.LineChart(document.getElementById('chart1_div'));
+          chart.draw(data, options);
+        }).getChartData();
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart1_div" style="width: 900px; height: 500px"></div>
+    <div id="chart2_div" style="width: 900px; height: 500px"></div>
+  </body>
+</html>
