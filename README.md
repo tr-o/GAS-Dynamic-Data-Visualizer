@@ -14,10 +14,13 @@ GAS-Dynamic-Data-Visualizer is a Google Apps Script powered data visualization t
 
 ## Features
 
-- Fetch data from Google Sheets dynamically
-- Display data using interactive charts powered by Google Charts
-- Customize chart options and styles
-- Automatic date formatting for easy reading
+- **Dynamic Data Visualization**: Automatically update charts based on changes in the data within your Google Sheet.
+- **Interactive Charts**: Enhance user engagement and data exploration by creating interactive charts powered by Google Charts.
+- **Customizable Chart Options and Styles**: Tailor your charts to your specific needs by customizing various aspects such as chart type, colors, axis labels, and more.
+- **Automatic Date Formatting**: Simplify date handling and improve readability by automatically formatting date values in the charts.
+- **Integration with Google Sheets**: Seamlessly integrate the visualization functionality into your existing Google Sheets projects, without the need for additional tools or software.
+- **Google Apps Script (GAS) Powered**: Leverage the power of Google Apps Script to create, update, and manage your data visualizations.
+
 
 ## Getting Started
 
