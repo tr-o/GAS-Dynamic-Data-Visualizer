@@ -31,6 +31,10 @@ function doGet() { ... }
 function getChartData() { ... }
 ```
 3. `index.html`: The HTML file that creates and displays the interactive charts using Google Charts.
+```html
+<!DOCTYPE html>
+<html> ... </html>
+```
 
 ## Setup Instructions
 
