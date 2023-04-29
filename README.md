@@ -1,16 +1,46 @@
 # GAS-Dynamic-Data-Visualizer
-**Version: 0.1.0**
+**Version: 0.1.2**
 
 GAS-Dynamic-Data-Visualizer is a Google Apps Script powered data visualization tool that fetches data from Google Sheets and displays it using interactive charts. The project provides an easy-to-use interface to visualize and explore data from Google Sheets in real-time.
 ![image](https://user-images.githubusercontent.com/98264095/233547556-f9c96a96-cc75-41db-b321-a7c6f9bd3909.png)
 
-## Table of Contents
+This project consists of two files that together create a web app displaying line charts for customizable data sets using Google Sheets as the data source. The example provided uses Temperature, Humidity, and Absolute Humidity data sets, but you can adapt it to display any combination of data sets according to your needs.
 
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Files](#files)
-- [Setup Instructions](#setup-instructions)
-- [Customization](#customization)
+# Files
+Codes.gs: A Google Apps Script file containing functions to fetch and process data from Google Sheets.
+index.html: An HTML file that uses the Google Charts library to render line charts based on the data fetched from Google Sheets.
+
+# Features
+Fetches data from Google Sheets using Google Apps Script
+Filters data based on given date ranges (if any)
+Displays separate line charts for customizable data sets (e.g., Temperature, Humidity, Absolute Humidity, or any other data sets you require)
+Resizes the charts automatically based on the window size
+Customizable chart styles and options using Google Charts library
+
+# Functions
+## In Codes.gs:
+doGet(): Returns the HTML output from the 'index' file.
+getChartData(sheetName, startDate, endDate): Fetches data from the specified sheet and filters it based on the provided date range. If no date range is provided, the default range is set to the last 24 hours.
+getLastRowDataWithLabels(sheetName): Returns the last row of data along with the column labels for the specified sheet.
+getAllLastRowDataWithLabels(sheetNames): Returns the last row of data along with the column labels for all specified sheets.
+
+## In index.html:
+drawCharts(): Calls the drawChart function for each of the data sets that you want to display.
+calculateShowTextEvery(inputValue): Calculates the interval at which to display x-axis labels, based on the number of data points.
+drawChart(sheetName, elementId): Fetches data from the specified sheet and renders a line chart inside the specified HTML element.
+
+# Setup
+Create a new Google Sheets document and populate it with your data. Make sure to have separate sheets for each data set, with the data organized in columns. You can choose to include any combination of data sets.
+In the Google Sheets document, click on "Extensions" > "Apps Script" to open the Apps Script editor.
+Copy the contents of Codes.gs into the script editor and save the project.
+In the script editor, click on "File" > "New" > "HTML file" and create a new HTML file named "index".
+Copy the contents of index.html into the new HTML file and save.
+To deploy the web app, click on "Publish" > "Deploy as web app" in the script editor, then select a version, and set the access level to "Anyone, even anonymous" (if desired). Click "Deploy" to get the web app URL.
+Open the web app URL in your browser to view the charts.
+
+# Customization
+You can customize the appearance and behavior of the charts by editing the options object in the drawChart function in index.html. You can find more information about the available options in the Google Charts documentation.
+To display only specific data sets, modify the drawCharts function in index.html to include only the desired data sets, and make sure the corresponding sheets are present in your Google Sheets document.
 
 ## Features
 
@@ -35,38 +65,5 @@ To set up and use the GAS-Dynamic-Data-Visualizer, follow these steps:
 7. Deploy the script as a web app by clicking on `Deploy` > `New deployment` > `Web app`.
 8. Set the access permissions and copy the generated web app URL.
 9. Open the web app URL in a browser to view and interact with your data.
-
-## Files
-
-1. `Code.gs`: The main Google Apps Script file that fetches data from the Google Sheet and returns it to the web app.
-```javascript
-function doGet() { ... }
-function getChartData() { ... }
-```
-2. `index.html`: The HTML file that creates and displays the interactive charts using Google Charts.
-```html
-<!DOCTYPE html>
-<html> ... </html>
-```
-
-3. `sample.xlsx`: The excel file containing sample data. 
-
-## Setup Instructions
-
-1. Create a new Google Sheet and populate it with your data. Make sure the first row contains the headers for the data columns.
-2. Open the Script Editor in your Google Sheet by clicking on `Extensions` > `Apps Script`.
-3. Create two new files in the script editor: `Code.gs` and `index.html`.
-4. Copy the contents of `Code.gs` and `index.html` from this repository into the respective files in the script editor.
-5. Replace `'temperature'` in the `Code.gs` file with the name of the sheet containing your data.
-6. Save your changes in the script editor.
-7. Deploy the script as a web app by clicking on `Deploy` > `New deployment` > `Web app`.
-8. Set the access permissions and copy the generated web app URL.
-9. Open the web app URL in a browser to view and interact with your data.
-
-## Customization
-
-You can customize the chart options and styles by modifying the `options` object in the `index.html` file. Refer to the [Google Charts documentation](https://developers.google.com/chart/interactive/docs/gallery) for more information on available customization options.
-
-
 
 
