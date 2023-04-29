@@ -4,28 +4,70 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {packages: ['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawCharts);
 
-      function drawChart() {
+      function drawCharts() {
+        drawChart('Temperature', 'chart1_div');
+        drawChart('Humidity', 'chart2_div');
+        drawChart('AbsoluteHumidity', 'chart3_div');
+      }
+
+      function calculateShowTextEvery(inputValue) {
+        const maxLabels = 10;
+        let showTextEvery = Math.ceil(inputValue / maxLabels);
+        return showTextEvery;
+      }
+
+      function drawChart(sheetName, elementId) {
         google.script.run.withSuccessHandler(function(response) {
           var jsonData = response;
           var data = new google.visualization.arrayToDataTable(jsonData.chartData);
 
+          var numRows = data.getNumberOfRows();
+          var showTextEvery = calculateShowTextEvery(numRows);
+
           var options = {
-            title: 'Temperature',
+            title: sheetName,
             curveType: 'function',
             legend: { position: 'bottom' },
-            pointSize: 4,
+            pointSize: 2,
+            hAxis: {
+              slantedText: false,
+              showTextEvery: showTextEvery
+            },
+            chartArea: { width: '80%', height: '70%' }
           };
 
-          var chart = new google.visualization.LineChart(document.getElementById('chart1_div'));
+          var chart = new google.visualization.LineChart(document.getElementById(elementId));
           chart.draw(data, options);
-        }).getChartData();
+        }).getChartData(sheetName);
       }
+
+      // Redraw charts on window resize
+      window.addEventListener('resize', function() {
+        drawCharts();
+      });
     </script>
   </head>
   <body>
-    <div id="chart1_div" style="width: 900px; height: 500px"></div>
-    <div id="chart2_div" style="width: 900px; height: 500px"></div>
+    <div id="chart1_div" style="width: 100%;"></div>
+    <div id="chart2_div" style="width: 100%;"></div>
+    <div id="chart3_div" style="width: 100%;"></div>
+
+    <script>
+      const chartDivs = document.querySelectorAll('div[id^="chart"]');
+      const setChartDivHeight = () => {
+        const windowHeight = window.innerHeight;
+        const aspectRatio = 16 / 9;
+        const chartHeight = Math.floor(window.innerWidth / aspectRatio);
+
+        chartDivs.forEach(chartDiv => {
+          chartDiv.style.height = chartHeight + 'px';
+        });
+      };
+
+      setChartDivHeight();
+      window.addEventListener('resize', setChartDivHeight);
+    </script>
   </body>
 </html>
