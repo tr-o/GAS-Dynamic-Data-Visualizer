@@ -53,6 +53,14 @@ To set up and use the GAS-Dynamic-Data-Visualizer, follow these steps:
 - `calculateShowTextEvery(inputValue)`: Calculates the interval at which to display x-axis labels, based on the number of data points.
 - `drawChart(sheetName, elementId)`: Fetches data from the specified sheet and renders a line chart inside the specified HTML element.
 
+## Data Acquisition
+
+To acquire and log data for use with this web app, we recommend using the [SwitchBot Data Logger for Google Sheets](https://github.com/tr-o/SwitchBot-Data-Logger-for-Google-Sheets) project. This project allows you to collect data from SwitchBot devices and the OpenWeather API, and log it directly into a Google Sheets document.
+
+With the SwitchBot Data Logger, you can monitor various environmental parameters such as temperature, humidity, and weather conditions. It integrates seamlessly with this web app, enabling you to visualize and analyze the logged data in real-time through customizable charts.
+
+To get started with data acquisition, follow the setup instructions in the [SwitchBot Data Logger for Google Sheets repository](https://github.com/tr-o/SwitchBot-Data-Logger-for-Google-Sheets).
+
 ## Customization
 
 **Note**: To display any combination of data sets, modify the `drawCharts()` function in `index.html` to include only the desired data sets, and make sure the corresponding sheets are present in your Google Sheets document. The provided example uses Temperature, Humidity, and Absolute Humidity, but you can adjust these defaults to match your own data.
