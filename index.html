@@ -6,10 +6,12 @@
       google.charts.load('current', {packages: ['corechart']});
       google.charts.setOnLoadCallback(drawCharts);
 
+      let selectedTimeSpan = '24h';  // Default to 24 hours
+
       function drawCharts() {
-        drawChart('Temperature', 'chart1_div');
-        drawChart('Humidity', 'chart2_div');
-        drawChart('AbsoluteHumidity', 'chart3_div');
+        drawChart('Temperature', 'chart1_div', selectedTimeSpan);
+        drawChart('Humidity', 'chart2_div', selectedTimeSpan);
+        drawChart('AbsoluteHumidity', 'chart3_div', selectedTimeSpan);
       }
 
       function calculateShowTextEvery(inputValue) {
@@ -18,7 +20,7 @@
         return showTextEvery;
       }
 
-      function drawChart(sheetName, elementId) {
+      function drawChart(sheetName, elementId, timeSpan) {
         google.script.run.withSuccessHandler(function(response) {
           var jsonData = response;
           var data = new google.visualization.arrayToDataTable(jsonData.chartData);
@@ -40,16 +42,29 @@
 
           var chart = new google.visualization.LineChart(document.getElementById(elementId));
           chart.draw(data, options);
-        }).getChartData(sheetName);
+        }).getChartData(sheetName, timeSpan);
       }
 
       // Redraw charts on window resize
       window.addEventListener('resize', function() {
         drawCharts();
       });
+
+      // Redraw charts when time span is changed
+      function onTimeSpanChange(timeSpan) {
+        selectedTimeSpan = timeSpan;
+        drawCharts();
+      }
     </script>
   </head>
   <body>
+    <select id="timeSpan" onchange="onTimeSpanChange(this.value)">
+      <option value="24h">Last 24 hours</option>
+      <option value="7d">Last 7 days</option>
+      <option value="30d">Last 30 days</option>
+      <option value="1y">Last year</option>
+      <option value="ALL">All data</option>
+    </select>
     <div id="chart1_div" style="width: 100%;"></div>
     <div id="chart2_div" style="width: 100%;"></div>
     <div id="chart3_div" style="width: 100%;"></div>
