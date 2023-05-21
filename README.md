@@ -1,5 +1,5 @@
 # GAS-Dynamic-Data-Visualizer
-**Version: 0.1.2**
+**Version: 1.0**
 
 GAS-Dynamic-Data-Visualizer is a Google Apps Script powered data visualization tool that fetches data from Google Sheets and displays it using interactive charts. The project provides an easy-to-use interface to visualize and explore data from Google Sheets in real-time.
 ![image](https://user-images.githubusercontent.com/98264095/235333137-9d8fe50f-1aaf-48ea-80e5-766c0d18784e.png)
